@@ -8,6 +8,11 @@ const bot = new Telebot({
     timeout: 0, // Optional. Update polling timeout (0 - short polling).
     limit: 100, // Optional. Limits the number of updates to be retrieved.
     retryTimeout: 5000, // Optional. Reconnecting timeout (in ms).
+  },
+  webhook: {
+    port: process.env.PORT || 8443,
+    host: process.env.HOST,
+    url: process.env.URL
   }
 })
 
