@@ -21,7 +21,7 @@ function now() {
   let currentTime = parseInt("".concat(d.getHours(), (d.getMinutes() < 10 ? "0" : ""), d.getMinutes()))
 
   for (var i in todayAgenda) {
-    if (todayAgenda[i].from < currentTime)
+    if (todayAgenda[i].to < currentTime)
       delete todayAgenda[i];
   }
 
