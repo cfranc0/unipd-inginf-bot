@@ -40,7 +40,7 @@ function compileMessage(data) {
 
     let message = `*🤡 Che succede*\n\n`;
     // If there are no other classes today...
-    if (ls.length == 0)
+    if (ls.reduce((c, a) => {c+=(a!=null)}, 0) == 0)
       message += `Per oggi non ci sono altre lezioni.`
     else {
       // Creating the message
