@@ -1,0 +1,58 @@
+{
+  "lessons": {
+    "tdc": {
+      "name": "Teoria dei circuiti",
+      "emoji": "💡",
+      "prof": "Marconato Nicolo",
+      "email": "nicolo.marconato@unipd.it",
+      "moodle": "https://elearning.dei.unipd.it/course/view.php?id=7704",
+      "zoom": "https://unipd.zoom.us/j/81101556675?pwd=SEFUU3RFc3J1L0dZTnh0N0dwQUtrZz09",
+      "note": null
+    },
+    "so": {
+      "name": "Sistemi operativi",
+      "emoji": "🚔‍",
+      "prof": "Nanni Loris",
+      "email": "nanni@dei.unipd.it",
+      "moodle": "https://elearning.dei.unipd.it/course/view.php?id=7662",
+      "zoom": "https://unipd.zoom.us/j/82101189495?pwd=U0s3TXdMNElobWlNZFZyS251V2xEdz09",
+      "note": null
+    },
+    "ids1": {
+      "name": "Ingegneria del software 1",
+      "emoji": "👨‍💻",
+      "prof": "Mauro Migliardi",
+      "email": "mauro.migliardi@unipd.it",
+      "moodle": "https://elearning.dei.unipd.it/course/view.php?id=7361",
+      "zoom": null,
+      "note": "Le lezioni online sincrone iniziano da giovedì."
+    },
+    "fca": {
+      "name": "Fondamenti di controlli automatici",
+      "emoji": "🎆",
+      "prof": "Schenato Luca",
+      "email": "l.schenato@unipd.it",
+      "moodle": "https://elearning.dei.unipd.it/course/view.php?id=7284",
+      "zoom": "https://unipd.zoom.us/j/82522838648",
+      "note": null
+    },
+    "eoa": {
+      "name": "Economia ed organizzazione aziendale",
+      "emoji": "💰",
+      "prof": "Suzic Nikola",
+      "email": "nikola.suzic@unipd.it",
+      "moodle": "https://elearning.dei.unipd.it/course/view.php?id=7193",
+      "zoom": null,
+      "note": "Non seguo il corso, quindi se ci sono delle news mandate pure a @franc0212 così le aggiorno."
+    }
+  },
+  "lesson_plan": [
+    [["so", 1030, 1230], ["ids1", 1430, 1630], ["tdc", 1630, 1830]],
+    [["ids1", 830, 1030], ["fca", 1030, 1230], ["so", 1430, 1630]],
+    [["eoa", 1030, 1230], ["tdc", 1430, 1630], ["fca", 1630, 1830]],
+    [["ids1", 830, 1030], ["so", 1030, 1230]],
+    [["eoa", 830, 1030], ["fca", 1030, 1230]],
+    [],
+    []
+  ]
+}
