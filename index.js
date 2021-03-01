@@ -29,7 +29,7 @@ bot.on("/start", (msg, props) => {
 bot.on("callbackQuery", (msg, props) => {
 
   // Multiple message types but it deletes the original message
-  if (msg.data == "hello" || msg.data == "tellme" || msg.data == "courses" || /^course\.([a-z0-9]+)(\[[a-z]+\])?$/.test(msg.data)) {
+  if (msg.data == "hello" || msg.data == "tellme" || msg.data == "courses" || /^course\.([a-z0-9]+)(\[[a-z]+\])?$/.test(msg.data) || msg.data == "calendar") {
     let m = compileMessage({type: msg.data});
 
     bot.deleteMessage(msg.message.chat.id, msg.message.message_id).catch(e => console.error(e));

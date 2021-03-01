@@ -4,7 +4,7 @@
  */
 
 const { Keyboard, Key } = require('telegram-keyboard');
-const [lessonsNow, lessonsAll, lessonsOne] = require("./lessons");
+const [lessonsNow, lessonsNext, lessonsAll, lessonsOne, lessonsCalendar] = require("./lessons");
 
 /**
  * data structure
@@ -18,8 +18,12 @@ function compileMessage(data) {
   // Hello message
   if (data.type == "hello") {
     let keyboard = Keyboard.make([
-      Key.callback('🤡 Che succede', 'tellme'),
-      Key.callback('📚 Corsi', 'courses'),
+      [
+        Key.callback('🤡 Che succede', 'tellme'),
+        Key.callback('📚 Corsi', 'courses')
+      ], [
+        Key.callback('📆 Calendario', 'calendar')
+      ]
     ])
 
     return {
@@ -40,13 +44,19 @@ function compileMessage(data) {
 
     let message = `*🤡 Che succede*\n\n`;
     // If there are no other classes today...
-    if (ls.reduce((c, a) => {c+=(a!=null)}, 0) == 0)
-      message += `Per oggi non ci sono altre lezioni.`
+    if (ls.reduce((c, a) => {c+=(a!=null)}, 0) == 0) {
+        message += `Per oggi non ci sono altre lezioni.`;
+
+        // Looking ahead and finding the next lession
+        let nls = lessonsNext();
+        if (Object.keys(nls).length != 0)
+          message += `\nLa prossima lezione è ${nls.deltaDays == 1 ? "domani" : `tra ${nls.deltaDays} giorni`} alle ${parseLessionTime(nls.from)} di _${nls.course.emoji} ${nls.course.name}_.`
+    }
     else {
       // Creating the message
       for (var i in ls) {
 
-        message += `*${ls[i].course.emoji} ${ls[i].course.name}*\n🕐 ${Math.floor(ls[i].from/100)}:${ls[i].from - Math.floor(ls[i].from/100) * 100} → ${Math.floor(ls[i].to/100)}:${ls[i].to - Math.floor(ls[i].to/100) * 100}\n💻 `;
+        message += `*${ls[i].course.emoji} ${ls[i].course.name}*\n${parseLessionTime(ls[i].from)} → ${parseLessionTime(ls[i].to)}\n\n💻 `;
 
         // Adding the zoom link if available
         message += (ls[i].course.zoom != null ? `[Link Zoom](${ls[i].course.zoom})` : "_Nessun link Zoom_")
@@ -110,7 +120,40 @@ function compileMessage(data) {
     }
 
   }
+  else if (data.type == "calendar") {
 
+    let fullCalendar = lessonsCalendar();
+    const weekDays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+
+    let message = `*📆 Calendario*\n\n`;
+
+    for (var d=0; d < 7; d++) {
+
+      // Is there something here?
+      if (fullCalendar[d].length == 0)
+        continue;
+
+      message += `*${weekDays[d]}*\n`;
+      for (var c in fullCalendar[d])
+        message += `\`${fullCalendar[d][c][1] < 1000 ? " " : ""}${parseLessionTime(fullCalendar[d][c][1])}\` ${lessonsOne(fullCalendar[d][c][0]).emoji} ${lessonsOne(fullCalendar[d][c][0]).name}\n`;
+
+      message += `\n`;
+
+
+    }
+
+    let keyboard = Keyboard.make([Key.callback('◀️ Indietro', 'hello')])
+    return {
+      message,
+      inlineKeyboard: keyboard.inline().reply_markup
+    }
+
+  }
+
+}
+
+function parseLessionTime(t) {
+  return `${Math.floor(t/100)}:${t - Math.floor(t/100) * 100}`;
 }
 
 module.exports = compileMessage;
