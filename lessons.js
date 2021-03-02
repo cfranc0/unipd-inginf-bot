@@ -4,7 +4,7 @@ const lessonPlan = require("./lessonPlan.json");
 function now() {
 
   // Fixing datetime using timezone
-  let nz_date_string = new Date().toLocaleString("it-IT", { timeZone: "Europe/Rome" });
+  let nz_date_string = new Date().toLocaleString("en-US", { timeZone: "Europe/Rome" });
   let d = new Date(nz_date_string);
 
   // Today there might be no classes!
