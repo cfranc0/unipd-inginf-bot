@@ -110,9 +110,16 @@ function compileMessage(data) {
       message += `\n`;
 
     if (thisCourse.zoom != null)
-      message += `💻 [Link Zoom](${thisCourse.zoom})`;
+      message += `💻 [Link Zoom](${thisCourse.zoom})\n`;
+
+    if (thisCourse.links != null && thisCourse.links.length > 0) {
+      for (var i = 0; i < thisCourse.links.length; i++)
+        message += `${thisCourse.links[i][0]} [${thisCourse.links[i][1].split("/")[2]}](${thisCourse.links[i][1]})\n`;
+      message += `\n`;
+    }
+
     if (thisCourse.note != null)
-      message += `🗒 _${thisCourse.note}_`;
+      message += `🗒 _${thisCourse.note}_\n`;
 
     return {
       message,
