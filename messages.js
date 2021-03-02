@@ -130,7 +130,7 @@ function compileMessage(data) {
   else if (data.type == "calendar") {
 
     let fullCalendar = lessonsCalendar();
-    const weekDays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+    const weekDays = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];
 
     let message = `*📆 Calendario*\n\n`;
 
